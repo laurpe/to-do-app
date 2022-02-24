@@ -18,15 +18,23 @@
             <form id="add-task-form">
                 <div>
                     <label for="title">Title</label>
-                    <input type="text" id="title" />
+                    <input type="text" id="title" name="title" />
                 </div>
                 <div>
                     <label for="description">Description</label>
-                    <textarea id="description" rows="4"></textarea>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                    ></textarea>
                 </div>
                 <div>
                     <label for="isImportant">Mark important</label>
-                    <input type="checkbox" id="isImportant" />
+                    <input
+                        type="checkbox"
+                        id="isImportant"
+                        name="isImportant"
+                    />
                 </div>
                 <div>
                     <input type="submit" value="Add task" />
@@ -34,10 +42,10 @@
             </form>
             <section>
                 <h2>List of tasks</h2>
-                <table id="task-table">
-                    <tbody>
+                <table>
+                    <tbody id="task-table">
                         <tr>
-                            <td>Name</td>
+                            <td>Title</td>
                             <td>Description</td>
                             <td>Important</td>
                         </tr>
