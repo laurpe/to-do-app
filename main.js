@@ -21,6 +21,12 @@ const addTask = (event) => {
 
     tasks.push(task);
 
+    createTable(tasks);
+
+    event.target.reset();
+};
+
+const createTable = (tasks) => {
     const taskTable = document.querySelector("#task-table");
     const row = document.createElement("tr");
     const taskData = tasks
@@ -31,8 +37,6 @@ const addTask = (event) => {
 
     row.innerHTML = taskData;
     taskTable.appendChild(row);
-
-    event.target.reset();
 };
 
 const addTaskForm = document.querySelector("#add-task-form");
