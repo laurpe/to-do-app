@@ -9,6 +9,7 @@ class Task {
 const title = document.querySelector("#title");
 const isImportant = document.querySelector("#isImportant");
 
+const addTaskForm = document.querySelector("#add-task-form");
 const taskList = document.querySelector("#task-list");
 
 title.setAttribute("required", "");
@@ -43,27 +44,35 @@ const createList = (tasks) => {
                     <div class="task-name">${tasks[i].title}</div>
                     <div class="task-importance">${tasks[i].isImportant}</div>
                     <div class="task-importance">${tasks[i].dateAdded}</div>
-                    <div class="btn-remove-tasks">
-                        <button>remove</button>
-                        </div>
+                    <div class="remove-task">
+                        <button class="btn-remove-task">remove</button>
+                    </div>
                 </div>
             </li>
         `
         );
     }
-
-    console.log(taskList);
 };
 
-const deleteTask = (task) => {
+const deleteTask = (taskTitle) => {
     tasks = tasks.filter((item) => {
-        if (!item === task) {
+        if (item.title !== taskTitle) {
             return item;
         }
     });
+    console.log(tasks);
 
     createList(tasks);
 };
 
-const addTaskForm = document.querySelector("#add-task-form");
 addTaskForm.addEventListener("submit", addTask);
+
+document.addEventListener("click", (event) => {
+    if (event.target.matches(".btn-remove-task")) {
+        console.log("clicked remove button");
+        deleteTask(
+            event.target.parentNode.parentNode.firstElementChild.textContent
+        );
+        event.target.parentNode.parentNode.parentNode.remove();
+    }
+});
