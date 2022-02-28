@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Anonymous Pro", monospace;
+    background-color: rgb(241, 241, 241);
+    font-size: 1.5rem;
+    color: rgb(54, 54, 54);
+}
+
+input {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 5px;
+}
+
+input[type="submit"] {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    background-color: rgb(83, 147, 241);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+button {
+    border: none;
+}
+
+h1,
+section {
+    padding: 1.5rem;
+}
+
+h2 {
+    padding: 1.5rem 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.task-element {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+}
+
+.task-title {
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+#add-task-form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+}
+
+span.material-icons {
+    font-size: 2.5rem;
+}

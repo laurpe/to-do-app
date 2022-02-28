@@ -5,6 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
         <title>To do app</title>
     </head>
     <body>
@@ -20,7 +30,11 @@
                         <input type="text" id="title" name="title" />
                     </div>
                     <div>
-                        <label for="isImportant">Mark important</label>
+                        <label for="isImportant"
+                            ><span id="starbox" class="material-icons">
+                                star_outline
+                            </span></label
+                        >
                         <input
                             type="checkbox"
                             id="isImportant"
@@ -28,23 +42,13 @@
                         />
                     </div>
                     <div>
-                        <input type="submit" value="Add task" />
+                        <input type="submit" value="add" />
                     </div>
                 </form>
             </section>
             <section>
                 <h2>List of tasks</h2>
-                <ul id="task-list">
-                    <li>
-                        <div class="task-element">
-                            <div class="task-name">title</div>
-                            <div class="task-importance">isImportant</div>
-                            <div class="remove-task">
-                                <button class="btn-remove-task">remove</button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <ul id="task-list"></ul>
             </section>
         </main>
         <script src="main.js"></script>
