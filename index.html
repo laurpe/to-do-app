@@ -36,9 +36,9 @@
                     </div>
                     <div>
                         <label for="isImportant"
-                            ><span id="starbox" class="material-icons">
-                                star_outline
-                            </span></label
+                            ><span id="starbox" class="material-icons"
+                                >star_outline</span
+                            ></label
                         >
                         <input
                             type="checkbox"
@@ -47,21 +47,33 @@
                         />
                     </div>
                     <div>
-                        <label for="description"></label>
-                        <textarea
-                            id="description"
-                            name="description"
-                            rows="4"
-                            placeholder="description"
-                        ></textarea>
+                        <button id="btn-expand-fields" type="button">
+                            <span id="expand-icon" class="material-icons"
+                                >expand_less</span
+                            >
+                        </button>
                     </div>
+                    <div class="task-additional-fields hidden">
+                        <div>
+                            <label for="description"></label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                rows="4"
+                                placeholder="description"
+                            ></textarea>
+                        </div>
+                    </div>
+
                     <div>
-                        <button type="submit">add button</button>
+                        <button type="submit">
+                            <span class="material-icons"> add </span>
+                        </button>
                     </div>
                 </form>
             </section>
             <section>
-                <h2>List of tasks</h2>
+                <h2>Tasks</h2>
                 <ul id="task-list"></ul>
             </section>
         </main>

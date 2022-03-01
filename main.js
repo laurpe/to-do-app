@@ -92,3 +92,19 @@ isImportant.addEventListener("change", function () {
         starbox.textContent = "star_outline";
     }
 });
+
+// show/hide extra add task fields
+
+const expandBtn = document.querySelector("#btn-expand-fields");
+const expandIcon = document.querySelector("#expand-icon");
+const additionalFields = document.querySelector(".task-additional-fields");
+
+expandBtn.addEventListener("click", () => {
+    additionalFields.classList.toggle("hidden");
+
+    if (expandIcon.textContent === "expand_less") {
+        expandIcon.textContent = "expand_more";
+    } else {
+        expandIcon.textContent = "expand_less";
+    }
+});
