@@ -26,8 +26,13 @@
                 <h2>Add task</h2>
                 <form id="add-task-form">
                     <div>
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" />
+                        <label for="title"></label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="title"
+                        />
                     </div>
                     <div>
                         <label for="isImportant"
@@ -42,7 +47,16 @@
                         />
                     </div>
                     <div>
-                        <input type="submit" value="add" />
+                        <label for="description"></label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="4"
+                            placeholder="description"
+                        ></textarea>
+                    </div>
+                    <div>
+                        <button type="submit">add button</button>
                     </div>
                 </form>
             </section>

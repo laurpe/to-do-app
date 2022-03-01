@@ -1,5 +1,6 @@
 class Task {
     constructor(title, isImportant, dateAdded) {
+        this.id = Math.floor(Math.random() * 10000);
         this.title = title;
         this.isImportant = isImportant;
         this.dateAdded = dateAdded;
@@ -13,6 +14,8 @@ const addTaskForm = document.querySelector("#add-task-form");
 const taskList = document.querySelector("#task-list");
 
 title.setAttribute("required", "");
+
+//adding task
 
 let tasks = [];
 
@@ -40,7 +43,7 @@ const createList = (tasks) => {
             "beforeend",
             `
             <li>
-                <div class="task-element">
+                <div id=${tasks[i].id} class="task-element">
                     <div class="task-title">${tasks[i].title}</div>
                     <div class="task-importance">${tasks[i].isImportant}</div>
                     <div class="task-importance">${tasks[i].dateAdded}</div>
@@ -56,30 +59,25 @@ const createList = (tasks) => {
     }
 };
 
-const deleteTask = (taskTitle) => {
+const deleteTask = (taskId) => {
     tasks = tasks.filter((item) => {
-        if (item.title !== taskTitle) {
+        if (item.id !== Number(taskId)) {
             return item;
         }
     });
-    console.log(tasks);
-
     createList(tasks);
 };
 
 addTaskForm.addEventListener("submit", addTask);
 
+//deleting task
+
 document.addEventListener("click", (event) => {
     if (event.target.matches(".btn-remove-task")) {
-        deleteTask(
-            event.target.parentNode.parentNode.firstElementChild.textContent
-        );
+        deleteTask(event.target.parentNode.parentNode.id);
         event.target.parentNode.parentNode.parentNode.remove();
     } else if (event.target.matches(".remove-icon")) {
-        deleteTask(
-            event.target.parentNode.parentNode.parentNode.firstElementChild
-                .textContent
-        );
+        deleteTask(event.target.parentNode.parentNode.parentNode.id);
         event.target.parentNode.parentNode.parentNode.parentNode.remove();
     }
 });
@@ -89,10 +87,8 @@ const starbox = document.querySelector("#starbox");
 
 isImportant.addEventListener("change", function () {
     if (this.checked) {
-        console.log("Checkbox is checked..");
         starbox.textContent = "star";
     } else {
-        console.log("Checkbox is not checked..");
         starbox.textContent = "star_outline";
     }
 });
