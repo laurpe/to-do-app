@@ -25,7 +25,7 @@
             <section>
                 <h2>Add task</h2>
                 <form id="add-task-form">
-                    <div>
+                    <div class="form-title">
                         <label for="title"></label>
                         <input
                             type="text"
@@ -34,7 +34,7 @@
                             placeholder="title"
                         />
                     </div>
-                    <div>
+                    <div class="form-important">
                         <label for="isImportant"
                             ><span id="starbox" class="material-icons"
                                 >star_outline</span
@@ -46,15 +46,20 @@
                             name="isImportant"
                         />
                     </div>
-                    <div>
+                    <div class="form-expand">
                         <button id="btn-expand-fields" type="button">
                             <span id="expand-icon" class="material-icons"
                                 >expand_less</span
                             >
                         </button>
                     </div>
-                    <div class="task-additional-fields hidden">
-                        <div>
+                    <div class="form-submit-btn">
+                        <button type="submit">
+                            <span class="material-icons"> add </span>
+                        </button>
+                    </div>
+                    <div class="form-additional-fields hidden">
+                        <div class="form-description">
                             <label for="description"></label>
                             <textarea
                                 id="description"
@@ -63,12 +68,6 @@
                                 placeholder="description"
                             ></textarea>
                         </div>
-                    </div>
-
-                    <div>
-                        <button type="submit">
-                            <span class="material-icons"> add </span>
-                        </button>
                     </div>
                 </form>
             </section>

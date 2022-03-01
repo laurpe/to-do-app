@@ -17,6 +17,7 @@ input {
     padding: 10px;
     border: 2px solid rgb(54, 54, 54);
     border-radius: 5px;
+    width: 100%;
 }
 
 /* input[type="submit"] {
@@ -35,6 +36,8 @@ textarea {
     padding: 10px;
     border: 2px solid rgb(54, 54, 54);
     border-radius: 5px;
+    width: 55%;
+    margin-top: 10px;
 }
 
 button {
@@ -50,8 +53,60 @@ h2 {
     padding: 1.5rem 0;
 }
 
+input[type="checkbox"] {
+    display: none;
+}
+
+span.material-icons {
+    font-size: 2.2rem;
+}
+
+span.material-icons.task-importance {
+    font-size: 1.4rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Add task form */
+
+#add-task-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.form-title {
+    width: 55%;
+}
+
+.form-important {
+    width: 15%;
+    text-align: center;
+}
+
+.form-expand {
+    width: 15%;
+    text-align: center;
+}
+
+.form-submit-btn {
+    width: 15%;
+    text-align: center;
+}
+
+.form-additional-fields {
+    width: 100%;
+}
+
+/* Task elements */
+
 li {
     list-style-type: none;
+    width: 500px;
 }
 
 .task-element {
@@ -60,27 +115,12 @@ li {
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 1rem 0;
+    border-bottom: 2px dashed rgb(54, 54, 54);
 }
 
 .task-title {
+    font-weight: 700;
+    font-size: 1.3rem;
     width: 100%;
-}
-
-input[type="checkbox"] {
-    display: none;
-}
-
-#add-task-form {
-    /* display: flex;
-    justify-content: space-around;
-    align-items: center; */
-    width: 70%;
-}
-
-span.material-icons {
-    font-size: 2.2rem;
-}
-
-.hidden {
-    display: none;
+    padding: 10px 0;
 }

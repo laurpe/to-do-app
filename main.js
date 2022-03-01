@@ -45,8 +45,16 @@ const createList = (tasks) => {
             <li>
                 <div id=${tasks[i].id} class="task-element">
                     <div class="task-title">${tasks[i].title}</div>
-                    <div class="task-importance">${tasks[i].isImportant}</div>
-                    <div class="task-importance">${tasks[i].dateAdded}</div>
+                    <div class="task-importance">${
+                        tasks[i].isImportant
+                            ? `<span class="material-icons task-importance"
+                    >star</span
+                >`
+                            : `<span class="material-icons task-importance"
+                >star_outline</span
+            >`
+                    }</div>
+                    <div class="task-date">${tasks[i].dateAdded}</div>
                     <div class="remove-task">
                         <button class="btn-remove-task"><span class="material-icons remove-icon">
                         clear
@@ -54,7 +62,7 @@ const createList = (tasks) => {
                     </div>
                 </div>
             </li>
-        `
+            `
         );
     }
 };
@@ -97,7 +105,7 @@ isImportant.addEventListener("change", function () {
 
 const expandBtn = document.querySelector("#btn-expand-fields");
 const expandIcon = document.querySelector("#expand-icon");
-const additionalFields = document.querySelector(".task-additional-fields");
+const additionalFields = document.querySelector(".form-additional-fields");
 
 expandBtn.addEventListener("click", () => {
     additionalFields.classList.toggle("hidden");
