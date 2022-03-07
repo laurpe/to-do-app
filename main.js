@@ -116,3 +116,29 @@ expandBtn.addEventListener("click", () => {
         expandIcon.textContent = "expand_less";
     }
 });
+
+// sort tasks by title (alphabetical)
+
+const btnSortTitle = document.querySelector("#btn-sort-title");
+
+const sortByTitle = () => {
+    tasks.sort((a, b) => {
+        return a.title > b.title ? 1 : -1;
+    });
+    createList(tasks);
+};
+
+btnSortTitle.addEventListener("click", sortByTitle);
+
+// sort tasks by date dateAdded (ascending)
+
+const btnSortDate = document.querySelector("#btn-sort-date");
+
+const sortByDate = () => {
+    tasks.sort((a, b) => {
+        return a.dateAdded > b.dateAdded ? 1 : -1;
+    });
+    createList(tasks);
+};
+
+btnSortDate.addEventListener("click", sortByDate);
