@@ -121,6 +121,11 @@ li {
 .task-title {
     font-weight: 700;
     font-size: 1.3rem;
-    width: 100%;
     padding: 10px 0;
+    width: 100%;
+}
+
+.task-completed {
+    cursor: pointer;
+    user-select: none;
 }

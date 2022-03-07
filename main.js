@@ -1,9 +1,48 @@
+const listdata = [
+    {
+        id: 3719,
+        title: "Feed goldfish",
+        isImportant: false,
+        dateAdded: "01/03/2022, 13:01:00",
+        isCompleted: false,
+    },
+    {
+        id: 1150,
+        title: "Shop for groceries",
+        isImportant: false,
+        dateAdded: "27/02/2022, 08:20:11",
+        isCompleted: true,
+    },
+    {
+        id: 7858,
+        title: "Return library books",
+        isImportant: false,
+        dateAdded: "02/03/2022, 14:04:45",
+        isCompleted: false,
+    },
+    {
+        id: 3950,
+        title: "Go for a run",
+        isImportant: true,
+        dateAdded: "05/03/2022, 18:30:38",
+        isCompleted: false,
+    },
+    {
+        id: 9845,
+        title: "Have existential crisis",
+        isImportant: false,
+        dateAdded: "03/03/2022, 03:03:03",
+        isCompleted: false,
+    },
+];
+
 class Task {
     constructor(title, isImportant, dateAdded) {
         this.id = Math.floor(Math.random() * 10000);
         this.title = title;
         this.isImportant = isImportant;
         this.dateAdded = dateAdded;
+        this.isCompleted = false;
     }
 }
 
@@ -15,12 +54,60 @@ const taskList = document.querySelector("#task-list");
 
 title.setAttribute("required", "");
 
+const createList = (tasks) => {
+    taskList.innerHTML = "";
+
+    for (let i = 0; i < tasks.length; i++) {
+        taskList.insertAdjacentHTML(
+            "beforeend",
+            `
+            <li>
+                <div id=${tasks[i].id} class="task-element">
+                    <div class="task-title">${tasks[i].title}${
+                tasks[i].isImportant
+                    ? `<span class="material-icons task-importance"
+                    >star</span
+                >`
+                    : `<span class="material-icons task-importance"
+                >star_outline</span
+            >`
+            }</div>
+                    <div class="task-completed">${
+                        tasks[i].isCompleted
+                            ? `<span class="material-icons task-importance"
+                            >check_box</span
+                        >`
+                            : `<span class="material-icons task-importance"
+                        >check_box_outline_blank</span
+                    >`
+                    }</div>
+                    <div class="task-date">${tasks[i].dateAdded}</div>
+                    <div class="remove-task">
+                        <button class="btn-remove-task"><span class="material-icons remove-icon">
+                        clear
+                        </span></button>
+                    </div>
+                </div>
+            </li>
+            `
+        );
+    }
+
+    const taskCompleted = document.querySelectorAll(".task-completed");
+
+    taskCompleted.forEach((task) => {
+        task.addEventListener("click", () => {
+            markCompleted(task.parentNode.id);
+        });
+    });
+};
+
 //adding task
 
-let tasks = [];
-
-window.localStorage.setItem("tasks", JSON.stringify(tasks));
-console.log(JSON.parse(window.localStorage.getItem("tasks")));
+window.localStorage.setItem("tasks", JSON.stringify(listdata));
+let tasks = JSON.parse(localStorage.getItem("tasks"));
+//create list in the beginning
+createList(tasks);
 
 const addTask = (event) => {
     event.preventDefault();
@@ -37,38 +124,6 @@ const addTask = (event) => {
     createList(tasks);
 
     event.target.reset();
-};
-
-const createList = (tasks) => {
-    taskList.innerHTML = "";
-
-    for (let i = 0; i < tasks.length; i++) {
-        taskList.insertAdjacentHTML(
-            "beforeend",
-            `
-            <li>
-                <div id=${tasks[i].id} class="task-element">
-                    <div class="task-title">${tasks[i].title}</div>
-                    <div class="task-importance">${
-                        tasks[i].isImportant
-                            ? `<span class="material-icons task-importance"
-                    >star</span
-                >`
-                            : `<span class="material-icons task-importance"
-                >star_outline</span
-            >`
-                    }</div>
-                    <div class="task-date">${tasks[i].dateAdded}</div>
-                    <div class="remove-task">
-                        <button class="btn-remove-task"><span class="material-icons remove-icon">
-                        clear
-                        </span></button>
-                    </div>
-                </div>
-            </li>
-            `
-        );
-    }
 };
 
 const deleteTask = (taskId) => {
@@ -149,4 +204,13 @@ const sortByDate = () => {
 
 btnSortDate.addEventListener("click", sortByDate);
 
-console.log(window.localStorage.getItem("tasks"));
+// set task complete
+
+const markCompleted = (id) => {
+    let index = tasks.findIndex((item) => item.id == id);
+
+    tasks[index].isCompleted = !tasks[index].isCompleted;
+
+    createList(tasks);
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+};
