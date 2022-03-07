@@ -19,6 +19,9 @@ title.setAttribute("required", "");
 
 let tasks = [];
 
+window.localStorage.setItem("tasks", JSON.stringify(tasks));
+console.log(JSON.parse(window.localStorage.getItem("tasks")));
+
 const addTask = (event) => {
     event.preventDefault();
 
@@ -29,6 +32,7 @@ const addTask = (event) => {
     );
 
     tasks.push(task);
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
 
     createList(tasks);
 
@@ -73,6 +77,8 @@ const deleteTask = (taskId) => {
             return item;
         }
     });
+
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
     createList(tasks);
 };
 
@@ -142,3 +148,5 @@ const sortByDate = () => {
 };
 
 btnSortDate.addEventListener("click", sortByDate);
+
+console.log(window.localStorage.getItem("tasks"));
