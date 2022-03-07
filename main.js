@@ -63,24 +63,22 @@ const createList = (tasks) => {
             `
             <li>
                 <div id=${tasks[i].id} class="task-element">
-                    <div class="task-title">${tasks[i].title}${
-                tasks[i].isImportant
-                    ? `<span class="material-icons task-importance"
-                    >star</span
-                >`
-                    : `<span class="material-icons task-importance"
-                >star_outline</span
-            >`
-            }</div>
-                    <div class="task-completed">${
-                        tasks[i].isCompleted
-                            ? `<span class="material-icons task-importance"
-                            >check_box</span
-                        >`
-                            : `<span class="material-icons task-importance"
-                        >check_box_outline_blank</span
-                    >`
-                    }</div>
+                    <div class="task-title">${tasks[i].title}
+                    <label for="is-important">
+                        <span class="material-icons">
+                            star_outline
+                        </span>
+                    </label>
+                    <input type="checkbox" id="is-important" name="is-important" />
+                    </div>
+                    <div class="task-completed">
+                        <label for="is-completed">
+                            <span class="material-icons">
+                                check_box_outline_blank
+                            </span>                       
+                        </label>
+                        <input type="checkbox" id="is-completed" name="is-completed" />
+                    </div>
                     <div class="task-date">${tasks[i].dateAdded}</div>
                     <div class="remove-task">
                         <button class="btn-remove-task"><span class="material-icons remove-icon">

@@ -53,10 +53,6 @@ h2 {
     padding: 1.5rem 0;
 }
 
-input[type="checkbox"] {
-    display: none;
-}
-
 span.material-icons {
     font-size: 2.2rem;
 }
@@ -128,4 +124,16 @@ li {
 .task-completed {
     cursor: pointer;
     user-select: none;
+}
+
+#testi {
+    display: none;
+}
+
+#testi:checked + label::after {
+    content: "\e838";
+}
+
+#testi + label::after {
+    content: "\f06f";
 }
