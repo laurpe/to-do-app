@@ -11,14 +11,14 @@ body {
     color: rgb(54, 54, 54);
 }
 
-input {
+/* input {
     font-family: inherit;
     font-size: inherit;
     padding: 10px;
     border: 2px solid rgb(54, 54, 54);
     border-radius: 5px;
     width: 100%;
-}
+} */
 
 /* input[type="submit"] {
     font-family: inherit;
@@ -121,7 +121,10 @@ li {
     width: 100%;
 }
 
-/* input[type="checkbox"] {
-    content: "checkbox here";
-    background-color: red;
-} */
+.task-completed input[type="checkbox"] + label::after {
+    content: "check_box_outline_blank";
+}
+
+.task-completed input[type="checkbox"]:checked + label::after {
+    content: "check_box";
+}

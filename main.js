@@ -48,6 +48,8 @@ const taskList = document.querySelector("#task-list");
 title.setAttribute("required", "");
 
 const createList = (tasks) => {
+    //creates tasklist from tasks given to it
+    //update input element to show its value depending on the task's completed value
     taskList.innerHTML = "";
 
     for (let i = 0; i < tasks.length; i++) {
@@ -65,16 +67,21 @@ const createList = (tasks) => {
                     <input type="checkbox" id="is-important" name="is-important" />
                     </div>
                     <div class="task-completed">
-                        <label for="${tasks[i].id}-completed">
-                            <span class="material-icons">
-                                check_box_outline_blank
-                            </span>                       
+                        <input type="checkbox" id="completed-${
+                            tasks[i].id
+                        }" name="is-completed" ${
+                tasks[i].isCompleted ? "checked" : ""
+            }/>
+                        <label for="completed-${
+                            tasks[i].id
+                        }" class="material-icons">                     
                         </label>
-                        <input type="checkbox" id="${tasks[i].id}-completed" name="is-completed" />
                     </div>
                     <div class="task-date">${tasks[i].dateAdded}</div>
                     <div class="remove-task">
-                        <button class="btn-remove-task" id="${tasks[i].id}-remove">
+                        <button class="btn-remove-task" id="remove-${
+                            tasks[i].id
+                        }">
                             <span class="material-icons remove-icon">
                                 clear
                             </span>
@@ -88,13 +95,25 @@ const createList = (tasks) => {
 
     // add event listener for completed checkbox
 
-    const taskCompleted = document.querySelectorAll(
+    const completedInput = document.querySelectorAll(
         "input[name='is-completed']"
     );
 
-    taskCompleted.forEach((task, index) => {
-        task.addEventListener("change", () => {
-            toggleComplete(task.id.substring(0, 4));
+    completedInput.forEach((input, index) => {
+        // let task = tasks.find((task) => task.id == input.id.substring(0, 4));
+        // console.log(task);
+
+        // console.log(input.value);
+        // input.value = task.isCompleted;
+        // console.log(index);
+        // console.log(tasks);
+
+        console.log(input.value);
+        // input.value = tasks[index].isCompleted ? "checked" : null;
+
+        input.addEventListener("change", () => {
+            toggleComplete(input.id.substring(10));
+            console.log(tasks[index]);
         });
     });
 
@@ -103,17 +122,33 @@ const createList = (tasks) => {
 
     removeButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            deleteTask(button.id.substring(0, 4));
+            deleteTask(button.id.substring(7));
         });
     });
 };
 
-//adding task
+const getTasks = () => {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    return tasks;
+};
 
-window.localStorage.setItem("tasks", JSON.stringify(listdata));
-let tasks = JSON.parse(localStorage.getItem("tasks"));
-//create list in the beginning
-createList(tasks);
+const setTasks = (tasks) => {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+
+//initialize tasks
+
+const initializeTasklist = () => {
+    let tasks = getTasks();
+
+    if (tasks.length === 0) {
+        setTasks(listdata);
+    }
+    tasks = getTasks();
+    createList(tasks);
+};
+
+initializeTasklist();
 
 const addTask = (event) => {
     event.preventDefault();
@@ -124,8 +159,9 @@ const addTask = (event) => {
         new Date().toLocaleString()
     );
 
+    let tasks = getTasks();
     tasks.push(task);
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+    setTasks(tasks);
 
     createList(tasks);
 
@@ -135,6 +171,7 @@ const addTask = (event) => {
 // deleting a task
 
 const deleteTask = (taskId) => {
+    let tasks = getTasks();
     tasks = tasks.filter((item) => {
         if (item.id != taskId) {
             return item;
@@ -203,11 +240,15 @@ btnSortDate.addEventListener("click", sortByDate);
 // toggle complete
 
 const toggleComplete = (id) => {
+    let tasks = JSON.parse(window.localStorage.getItem("tasks"));
     let index = tasks.findIndex((item) => item.id == id);
+
+    console.log(id);
+    console.log(tasks);
+    console.log(index);
 
     tasks[index].isCompleted = !tasks[index].isCompleted;
 
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
-
     createList(tasks);
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
 };
