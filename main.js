@@ -57,12 +57,15 @@ const createList = (tasks) => {
             <li>
                 <div id=${tasks[i].id} class="task-element">
                     <div class="task-title">${tasks[i].title}
-                    <label for="is-important">
-                        <span class="material-icons">
-                            star_outline
-                        </span>
-                    </label>
-                    <input type="checkbox" id="is-important" name="is-important" />
+                        <input type="checkbox" id="importance-${
+                            tasks[i].id
+                        }" name="is-important" ${
+                tasks[i].isImportant ? "checked" : ""
+            }/>
+                        <label for="importance-${
+                            tasks[i].id
+                        }" class="material-icons">
+                        </label>
                     </div>
                     <div class="task-completed">
                         <input type="checkbox" id="completed-${
@@ -111,6 +114,17 @@ const createList = (tasks) => {
             deleteTask(button.id.substring(7));
         });
     });
+
+    // add event listener for setting importance
+    const importanceInput = document.querySelectorAll(
+        "input[name='is-important"
+    );
+
+    importanceInput.forEach((input) => {
+        input.addEventListener("change", () => {
+            toggleImportance(input.id.substring(11));
+        });
+    });
 };
 
 // get tasks / add tasks to localStorage
@@ -124,7 +138,7 @@ const setTasks = (tasks) => {
     window.localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-//initialize tasks
+//initialize tasklist
 
 const initializeTasklist = () => {
     let tasks = getTasks();
@@ -219,11 +233,8 @@ btnSortDate.addEventListener("click", sortByDate);
 const toggleComplete = (id) => {
     let tasks = getTasks();
     let index = tasks.findIndex((item) => item.id == id);
-    console.log(tasks[index].isCompleted);
 
     tasks[index].isCompleted = !tasks[index].isCompleted;
-
-    console.log(tasks[index].isCompleted);
 
     setTasks(tasks);
     createList(tasks);
@@ -242,3 +253,18 @@ const showCompleted = () => {
 };
 
 btnShowCompleted.addEventListener("click", showCompleted);
+
+// toggle importance
+
+const toggleImportance = (id) => {
+    let tasks = getTasks();
+    let index = tasks.findIndex((item) => item.id == id);
+    console.log(tasks[index].isImportant);
+
+    tasks[index].isImportant = !tasks[index].isImportant;
+
+    console.log(tasks[index].isImportant);
+
+    setTasks(tasks);
+    createList(tasks);
+};

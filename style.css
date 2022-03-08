@@ -121,7 +121,7 @@ li {
     width: 100%;
 }
 
-.task-completed input[type="checkbox"] {
+input[type="checkbox"] {
     appearance: none;
 }
 
@@ -131,4 +131,12 @@ li {
 
 .task-completed input[type="checkbox"]:checked + label::after {
     content: "check_box";
+}
+
+.task-title input[type="checkbox"] + label::after {
+    content: "star_outline";
+}
+
+.task-title input[type="checkbox"]:checked + label::after {
+    content: "star";
 }
