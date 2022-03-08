@@ -121,19 +121,7 @@ li {
     width: 100%;
 }
 
-.task-completed {
-    cursor: pointer;
-    user-select: none;
-}
-
-#testi {
-    display: none;
-}
-
-#testi:checked + label::after {
-    content: "\e838";
-}
-
-#testi + label::after {
-    content: "\f06f";
-}
+/* input[type="checkbox"] {
+    content: "checkbox here";
+    background-color: red;
+} */

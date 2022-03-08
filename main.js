@@ -27,13 +27,6 @@ const listdata = [
         dateAdded: "05/03/2022, 18:30:38",
         isCompleted: false,
     },
-    {
-        id: 9845,
-        title: "Have existential crisis",
-        isImportant: false,
-        dateAdded: "03/03/2022, 03:03:03",
-        isCompleted: false,
-    },
 ];
 
 class Task {
@@ -72,12 +65,12 @@ const createList = (tasks) => {
                     <input type="checkbox" id="is-important" name="is-important" />
                     </div>
                     <div class="task-completed">
-                        <label for="is-completed">
+                        <label for="${tasks[i].id}-completed">
                             <span class="material-icons">
                                 check_box_outline_blank
                             </span>                       
                         </label>
-                        <input type="checkbox" id="is-completed" name="is-completed" />
+                        <input type="checkbox" id="${tasks[i].id}-completed" name="is-completed" />
                     </div>
                     <div class="task-date">${tasks[i].dateAdded}</div>
                     <div class="remove-task">
@@ -91,13 +84,19 @@ const createList = (tasks) => {
         );
     }
 
-    const taskCompleted = document.querySelectorAll(".task-completed");
+    // add event listener for completed checkbox
 
-    taskCompleted.forEach((task) => {
-        task.addEventListener("click", () => {
-            markCompleted(task.parentNode.id);
+    const taskCompleted = document.querySelectorAll(
+        "input[name='is-completed']"
+    );
+
+    taskCompleted.forEach((task, index) => {
+        task.addEventListener("change", () => {
+            toggleComplete(task.id.substring(0, 4));
         });
     });
+
+    // when creating list, show correct checkbox value
 };
 
 //adding task
@@ -202,13 +201,14 @@ const sortByDate = () => {
 
 btnSortDate.addEventListener("click", sortByDate);
 
-// set task complete
+// toggle complete
 
-const markCompleted = (id) => {
+const toggleComplete = (id) => {
     let index = tasks.findIndex((item) => item.id == id);
 
     tasks[index].isCompleted = !tasks[index].isCompleted;
 
-    createList(tasks);
     window.localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    createList(tasks);
 };
