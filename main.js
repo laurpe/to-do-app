@@ -48,8 +48,6 @@ const taskList = document.querySelector("#task-list");
 title.setAttribute("required", "");
 
 const createList = (tasks) => {
-    //creates tasklist from tasks given to it
-    //update input element to show its value depending on the task's completed value
     taskList.innerHTML = "";
 
     for (let i = 0; i < tasks.length; i++) {
@@ -100,20 +98,8 @@ const createList = (tasks) => {
     );
 
     completedInput.forEach((input, index) => {
-        // let task = tasks.find((task) => task.id == input.id.substring(0, 4));
-        // console.log(task);
-
-        // console.log(input.value);
-        // input.value = task.isCompleted;
-        // console.log(index);
-        // console.log(tasks);
-
-        console.log(input.value);
-        // input.value = tasks[index].isCompleted ? "checked" : null;
-
         input.addEventListener("change", () => {
             toggleComplete(input.id.substring(10));
-            console.log(tasks[index]);
         });
     });
 
@@ -126,6 +112,8 @@ const createList = (tasks) => {
         });
     });
 };
+
+// get tasks / add tasks to localStorage
 
 const getTasks = () => {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -168,6 +156,8 @@ const addTask = (event) => {
     event.target.reset();
 };
 
+addTaskForm.addEventListener("submit", addTask);
+
 // deleting a task
 
 const deleteTask = (taskId) => {
@@ -181,19 +171,6 @@ const deleteTask = (taskId) => {
     window.localStorage.setItem("tasks", JSON.stringify(tasks));
     createList(tasks);
 };
-
-addTaskForm.addEventListener("submit", addTask);
-
-// star checkbox
-const starbox = document.querySelector("#starbox");
-
-isImportant.addEventListener("change", function () {
-    if (this.checked) {
-        starbox.textContent = "star";
-    } else {
-        starbox.textContent = "star_outline";
-    }
-});
 
 // show/hide extra add task fields
 
@@ -240,15 +217,28 @@ btnSortDate.addEventListener("click", sortByDate);
 // toggle complete
 
 const toggleComplete = (id) => {
-    let tasks = JSON.parse(window.localStorage.getItem("tasks"));
+    let tasks = getTasks();
     let index = tasks.findIndex((item) => item.id == id);
-
-    console.log(id);
-    console.log(tasks);
-    console.log(index);
+    console.log(tasks[index].isCompleted);
 
     tasks[index].isCompleted = !tasks[index].isCompleted;
 
+    console.log(tasks[index].isCompleted);
+
+    setTasks(tasks);
     createList(tasks);
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
 };
+
+// filter completed tasks
+
+const btnShowCompleted = document.querySelector("#btn-show-completed");
+
+const showCompleted = () => {
+    let tasks = getTasks();
+    let completed = tasks.filter((task) => {
+        return task.isCompleted;
+    });
+    createList(completed);
+};
+
+btnShowCompleted.addEventListener("click", showCompleted);

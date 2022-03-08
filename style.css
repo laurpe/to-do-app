@@ -121,6 +121,10 @@ li {
     width: 100%;
 }
 
+.task-completed input[type="checkbox"] {
+    appearance: none;
+}
+
 .task-completed input[type="checkbox"] + label::after {
     content: "check_box_outline_blank";
 }
