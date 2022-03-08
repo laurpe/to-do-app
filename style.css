@@ -11,24 +11,14 @@ body {
     color: rgb(54, 54, 54);
 }
 
-/* input {
+.form-title input {
     font-family: inherit;
     font-size: inherit;
     padding: 10px;
     border: 2px solid rgb(54, 54, 54);
     border-radius: 5px;
     width: 100%;
-} */
-
-/* input[type="submit"] {
-    font-family: inherit;
-    font-size: inherit;
-    border: none;
-    background-color: rgb(83, 147, 241);
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-} */
+}
 
 textarea {
     font-family: inherit;
@@ -123,6 +113,7 @@ li {
 
 input[type="checkbox"] {
     appearance: none;
+    cursor: pointer;
 }
 
 .task-completed input[type="checkbox"] + label::after {

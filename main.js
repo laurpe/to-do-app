@@ -268,3 +268,36 @@ const toggleImportance = (id) => {
     setTasks(tasks);
     createList(tasks);
 };
+
+// filter important tasks
+
+const btnShowImportant = document.querySelector("#btn-show-important");
+
+const showImportant = () => {
+    let tasks = getTasks();
+    let important = tasks.filter((task) => {
+        return task.isImportant;
+    });
+    createList(important);
+};
+
+btnShowImportant.addEventListener("click", showImportant);
+
+// clear filters
+
+const btnShowAll = document.querySelector("#btn-show-all");
+
+const clearFilters = () => {
+    let tasks = getTasks();
+    createList(tasks);
+};
+
+btnShowAll.addEventListener("click", clearFilters);
+
+//TODO
+// how to show description in tasklist?
+// how to show date in tasklist?
+// clear completed?
+//
+// css
+// how to show filter and sort buttons
