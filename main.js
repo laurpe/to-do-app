@@ -74,9 +74,11 @@ const createList = (tasks) => {
                     </div>
                     <div class="task-date">${tasks[i].dateAdded}</div>
                     <div class="remove-task">
-                        <button class="btn-remove-task"><span class="material-icons remove-icon">
-                        clear
-                        </span></button>
+                        <button class="btn-remove-task" id="${tasks[i].id}-remove">
+                            <span class="material-icons remove-icon">
+                                clear
+                            </span>
+                        </button>
                     </div>
                 </div>
             </li>
@@ -96,7 +98,14 @@ const createList = (tasks) => {
         });
     });
 
-    // when creating list, show correct checkbox value
+    // add event listener for delete button
+    const removeButtons = document.querySelectorAll(".btn-remove-task");
+
+    removeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            deleteTask(button.id.substring(0, 4));
+        });
+    });
 };
 
 //adding task
@@ -123,9 +132,11 @@ const addTask = (event) => {
     event.target.reset();
 };
 
+// deleting a task
+
 const deleteTask = (taskId) => {
     tasks = tasks.filter((item) => {
-        if (item.id !== Number(taskId)) {
+        if (item.id != taskId) {
             return item;
         }
     });
@@ -135,18 +146,6 @@ const deleteTask = (taskId) => {
 };
 
 addTaskForm.addEventListener("submit", addTask);
-
-//deleting task
-
-document.addEventListener("click", (event) => {
-    if (event.target.matches(".btn-remove-task")) {
-        deleteTask(event.target.parentNode.parentNode.id);
-        event.target.parentNode.parentNode.parentNode.remove();
-    } else if (event.target.matches(".remove-icon")) {
-        deleteTask(event.target.parentNode.parentNode.parentNode.id);
-        event.target.parentNode.parentNode.parentNode.parentNode.remove();
-    }
-});
 
 // star checkbox
 const starbox = document.querySelector("#starbox");
