@@ -301,3 +301,5 @@ btnShowAll.addEventListener("click", clearFilters);
 //
 // css
 // how to show filter and sort buttons
+
+// use data attribute to get the id
