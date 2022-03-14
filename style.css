@@ -1,21 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color: rgb(236, 238, 240);
+    --text: rgb(54, 54, 54);
+}
+
 body {
     font-family: "Anonymous Pro", monospace;
-    background-color: rgb(241, 241, 241);
+    background-color: var(--bg-color);
     font-size: 1rem;
-    color: rgb(54, 54, 54);
+    color: var(--text);
 }
 
 .form-title input {
     font-family: inherit;
     font-size: inherit;
     padding: 10px;
-    border: 2px solid rgb(54, 54, 54);
+    border: 2px solid var(--text);
     border-radius: 5px;
     width: 100%;
 }
@@ -24,7 +31,7 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     padding: 10px;
-    border: 2px solid rgb(54, 54, 54);
+    border: 2px solid var(--text);
     border-radius: 5px;
     width: 55%;
     margin-top: 10px;
@@ -32,6 +39,7 @@ textarea {
 
 button {
     border: none;
+    background-color: var(--bg-color);
 }
 
 h1,
@@ -44,7 +52,7 @@ h2 {
 }
 
 span.material-icons {
-    font-size: 2.2rem;
+    font-size: 2rem;
 }
 
 span.material-icons.task-importance {
@@ -100,15 +108,18 @@ li {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 1rem 0;
-    border-bottom: 2px dashed rgb(54, 54, 54);
+    padding: 1.5rem 0;
+    border-bottom: 2px dashed var(--text);
 }
 
 .task-title {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 1.3rem;
-    padding: 10px 0;
-    width: 100%;
+    display: flex;
+}
+
+.task-title label {
+    padding-right: 20px;
 }
 
 input[type="checkbox"] {
@@ -116,18 +127,18 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-.task-completed input[type="checkbox"] + label::after {
+.task-title input[type="checkbox"] + label::after {
     content: "check_box_outline_blank";
 }
 
-.task-completed input[type="checkbox"]:checked + label::after {
+.task-title input[type="checkbox"]:checked + label::after {
     content: "check_box";
 }
 
-.task-title input[type="checkbox"] + label::after {
+/* .task-title input[type="checkbox"] + label::after {
     content: "star_outline";
 }
 
 .task-title input[type="checkbox"]:checked + label::after {
     content: "star";
-}
+} */

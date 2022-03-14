@@ -56,29 +56,18 @@ const createList = (tasks) => {
             `
             <li>
                 <div id=${tasks[i].id} class="task-element">
-                    <div class="task-title">${tasks[i].title}
-                        <input type="checkbox" id="importance-${
-                            tasks[i].id
-                        }" name="is-important" ${
-                tasks[i].isImportant ? "checked" : ""
-            }/>
-                        <label for="importance-${
-                            tasks[i].id
-                        }" class="material-icons">
-                        </label>
-                    </div>
-                    <div class="task-completed">
-                        <input type="checkbox" id="completed-${
-                            tasks[i].id
-                        }" name="is-completed" ${
+                    <div class="task-title">
+                            <input type="checkbox" id="completed-${
+                                tasks[i].id
+                            }" name="is-completed" ${
                 tasks[i].isCompleted ? "checked" : ""
             }/>
-                        <label for="completed-${
-                            tasks[i].id
-                        }" class="material-icons">                     
+                            <label for="completed-${
+                                tasks[i].id
+                            }" class="material-icons">
                         </label>
+                            ${tasks[i].title}
                     </div>
-                    <div class="task-date">${tasks[i].dateAdded}</div>
                     <div class="remove-task">
                         <button class="btn-remove-task" id="remove-${
                             tasks[i].id
@@ -301,4 +290,4 @@ btnShowAll.addEventListener("click", clearFilters);
 // css
 // how to show filter and sort buttons
 
-// use data attribute to get the id
+// show importance toggle?
