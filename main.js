@@ -117,7 +117,7 @@ const createList = (tasks) => {
 
     // add event listener for setting importance
     const importanceInput = document.querySelectorAll(
-        "input[name='is-important"
+        "input[name='is-important']"
     );
 
     importanceInput.forEach((input) => {
@@ -143,7 +143,7 @@ const setTasks = (tasks) => {
 const initializeTasklist = () => {
     let tasks = getTasks();
 
-    if (tasks.length === 0) {
+    if (!tasks || tasks.length === 0) {
         setTasks(listdata);
     }
     tasks = getTasks();
@@ -207,6 +207,7 @@ expandBtn.addEventListener("click", () => {
 const btnSortTitle = document.querySelector("#btn-sort-title");
 
 const sortByTitle = () => {
+    let tasks = getTasks();
     tasks.sort((a, b) => {
         return a.title > b.title ? 1 : -1;
     });
@@ -220,6 +221,7 @@ btnSortTitle.addEventListener("click", sortByTitle);
 const btnSortDate = document.querySelector("#btn-sort-date");
 
 const sortByDate = () => {
+    let tasks = getTasks();
     tasks.sort((a, b) => {
         return a.dateAdded > b.dateAdded ? 1 : -1;
     });
@@ -259,11 +261,8 @@ btnShowCompleted.addEventListener("click", showCompleted);
 const toggleImportance = (id) => {
     let tasks = getTasks();
     let index = tasks.findIndex((item) => item.id == id);
-    console.log(tasks[index].isImportant);
 
     tasks[index].isImportant = !tasks[index].isImportant;
-
-    console.log(tasks[index].isImportant);
 
     setTasks(tasks);
     createList(tasks);
