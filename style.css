@@ -11,6 +11,12 @@
     --text: rgb(54, 54, 54);
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body {
     font-family: "Anonymous Pro", monospace;
     background-color: var(--bg-color);
@@ -20,21 +26,12 @@ body {
 
 .form-title input {
     font-family: inherit;
-    font-size: inherit;
-    padding: 10px;
+    font-size: 1.2rem;
+    color: inherit;
+    padding: 15px;
     border: 2px solid var(--text);
     border-radius: 5px;
     width: 100%;
-}
-
-textarea {
-    font-family: inherit;
-    font-size: inherit;
-    padding: 10px;
-    border: 2px solid var(--text);
-    border-radius: 5px;
-    width: 55%;
-    margin-top: 10px;
 }
 
 button {
@@ -49,14 +46,6 @@ section {
 
 h2 {
     padding: 1.5rem 0;
-}
-
-span.material-icons {
-    font-size: 2rem;
-}
-
-span.material-icons.task-importance {
-    font-size: 1.4rem;
 }
 
 .hidden {
@@ -74,26 +63,28 @@ span.material-icons.task-importance {
 }
 
 .form-title {
-    width: 55%;
+    width: 80%;
 }
 
 .form-important {
-    width: 15%;
     text-align: center;
 }
 
 .form-expand {
-    width: 15%;
     text-align: center;
 }
 
 .form-submit-btn {
-    width: 15%;
     text-align: center;
 }
 
-.form-additional-fields {
-    width: 100%;
+form .material-icons {
+    font-size: 2.2rem;
+}
+
+form {
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Task elements */
@@ -108,18 +99,19 @@ li {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
     border-bottom: 2px dashed var(--text);
 }
 
 .task-title {
-    font-weight: 400;
+    font-weight: 700;
     font-size: 1.3rem;
     display: flex;
+    align-items: center;
 }
 
-.task-title label {
-    padding-right: 20px;
+.checkbox-importance {
+    padding-right: 30px;
 }
 
 input[type="checkbox"] {
@@ -127,18 +119,37 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-.task-title input[type="checkbox"] + label::after {
+.checkbox-completed input[type="checkbox"] + label::after {
     content: "check_box_outline_blank";
 }
 
-.task-title input[type="checkbox"]:checked + label::after {
+.checkbox-completed input[type="checkbox"]:checked + label::after {
     content: "check_box";
 }
 
-/* .task-title input[type="checkbox"] + label::after {
+.checkbox-importance input[type="checkbox"] + label::after {
     content: "star_outline";
 }
 
-.task-title input[type="checkbox"]:checked + label::after {
+.checkbox-importance input[type="checkbox"]:checked + label::after {
     content: "star";
-} */
+}
+
+.remove-task {
+    display: flex;
+}
+
+button {
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.sort-menu,
+.filter-menu {
+    font-size: 0.9rem;
+    padding: 10px 0;
+}
+
+.sort-menu > .material-icons {
+    font-size: 0.8rem;
+}

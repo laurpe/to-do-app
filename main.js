@@ -16,7 +16,7 @@ const listdata = [
     {
         id: 7858,
         title: "Return library books",
-        isImportant: false,
+        isImportant: true,
         dateAdded: "02/03/2022, 14:04:45",
         isCompleted: false,
     },
@@ -54,9 +54,10 @@ const createList = (tasks) => {
         taskList.insertAdjacentHTML(
             "beforeend",
             `
-            <li>
+            <li title="${tasks[i].dateAdded}">
                 <div id=${tasks[i].id} class="task-element">
                     <div class="task-title">
+                        <div class="checkbox-completed">
                             <input type="checkbox" id="completed-${
                                 tasks[i].id
                             }" name="is-completed" ${
@@ -66,15 +67,25 @@ const createList = (tasks) => {
                                 tasks[i].id
                             }" class="material-icons">
                         </label>
+                        </div>
+                        <div class="checkbox-importance">
+                        <input type="checkbox" id="importance-${
+                            tasks[i].id
+                        }" name="is-important" ${
+                tasks[i].isImportant ? "checked" : ""
+            }/>
+                        <label for="importance-${
+                            tasks[i].id
+                        }" class="material-icons">
+                        </label>
+                        </div>
                             ${tasks[i].title}
                     </div>
                     <div class="remove-task">
-                        <button class="btn-remove-task" id="remove-${
+                        <button class="btn-remove-task material-icons" id="remove-${
                             tasks[i].id
                         }">
-                            <span class="material-icons remove-icon">
                                 clear
-                            </span>
                         </button>
                     </div>
                 </div>
@@ -175,49 +186,63 @@ const deleteTask = (taskId) => {
     createList(tasks);
 };
 
-// show/hide extra add task fields
+// sort tasks by title
 
-const expandBtn = document.querySelector("#btn-expand-fields");
-const expandIcon = document.querySelector("#expand-icon");
-const additionalFields = document.querySelector(".form-additional-fields");
+const btnSortTitleAsc = document.querySelector("#btn-sort-title-asc");
+const btnSortTitleDesc = document.querySelector("#btn-sort-title-desc");
 
-expandBtn.addEventListener("click", () => {
-    additionalFields.classList.toggle("hidden");
-
-    if (expandIcon.textContent === "expand_less") {
-        expandIcon.textContent = "expand_more";
-    } else {
-        expandIcon.textContent = "expand_less";
+const sortByTitle = (direction) => {
+    let tasks = getTasks();
+    if (direction === "asc") {
+        tasks.sort((a, b) => {
+            return a.title > b.title ? 1 : -1;
+        });
+        createList(tasks);
     }
+    if (direction === "desc") {
+        tasks.sort((a, b) => {
+            return a.title < b.title ? 1 : -1;
+        });
+        createList(tasks);
+    }
+};
+
+btnSortTitleAsc.addEventListener("click", () => {
+    sortByTitle("asc");
 });
 
-// sort tasks by title (alphabetical)
+btnSortTitleDesc.addEventListener("click", () => {
+    sortByTitle("desc");
+});
 
-const btnSortTitle = document.querySelector("#btn-sort-title");
+// sort tasks by date
 
-const sortByTitle = () => {
+const btnSortDateAsc = document.querySelector("#btn-sort-date-asc");
+const btnSortDateDesc = document.querySelector("#btn-sort-date-desc");
+
+const sortByDate = (direction) => {
     let tasks = getTasks();
-    tasks.sort((a, b) => {
-        return a.title > b.title ? 1 : -1;
-    });
-    createList(tasks);
+    if (direction === "asc") {
+        tasks.sort((a, b) => {
+            return a.dateAdded > b.dateAdded ? 1 : -1;
+        });
+        createList(tasks);
+    }
+    if (direction === "desc") {
+        tasks.sort((a, b) => {
+            return a.dateAdded < b.dateAdded ? 1 : -1;
+        });
+        createList(tasks);
+    }
 };
 
-btnSortTitle.addEventListener("click", sortByTitle);
+btnSortDateAsc.addEventListener("click", () => {
+    sortByDate("asc");
+});
 
-// sort tasks by date dateAdded (ascending)
-
-const btnSortDate = document.querySelector("#btn-sort-date");
-
-const sortByDate = () => {
-    let tasks = getTasks();
-    tasks.sort((a, b) => {
-        return a.dateAdded > b.dateAdded ? 1 : -1;
-    });
-    createList(tasks);
-};
-
-btnSortDate.addEventListener("click", sortByDate);
+btnSortDateDesc.addEventListener("click", () => {
+    sortByDate("desc");
+});
 
 // toggle complete
 
@@ -251,7 +276,9 @@ const toggleImportance = (id) => {
     let tasks = getTasks();
     let index = tasks.findIndex((item) => item.id == id);
 
+    console.log(tasks[index].isImportant);
     tasks[index].isImportant = !tasks[index].isImportant;
+    console.log(tasks[index].isImportant);
 
     setTasks(tasks);
     createList(tasks);
@@ -291,3 +318,33 @@ btnShowAll.addEventListener("click", clearFilters);
 // how to show filter and sort buttons
 
 // show importance toggle?
+
+// show / hide sort and filter menu
+
+const sortMenu = document.querySelector(".sort-menu");
+const sortBtn = document.querySelector("#btn-sort-menu");
+
+sortBtn.addEventListener("click", () => {
+    sortMenu.classList.toggle("hidden");
+});
+
+const filterMenu = document.querySelector(".filter-menu");
+const filterBtn = document.querySelector("#btn-filter-menu");
+
+filterBtn.addEventListener("click", () => {
+    filterMenu.classList.toggle("hidden");
+});
+
+// star checkbox
+
+const starbox = document.querySelector("#starbox");
+
+isImportant.addEventListener("change", function () {
+    if (this.checked) {
+        console.log("Checkbox is checked..");
+        starbox.textContent = "star";
+    } else {
+        console.log("Checkbox is not checked..");
+        starbox.textContent = "star_outline";
+    }
+});

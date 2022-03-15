@@ -12,75 +12,90 @@
         <title>To do app</title>
     </head>
     <body>
-        <header>
-            <h1>To do</h1>
-        </header>
-        <main>
-            <section>
-                <h2>Add task</h2>
-                <form id="add-task-form">
-                    <div class="form-title">
-                        <label for="title"></label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            placeholder="title"
-                        />
-                    </div>
-                    <div class="form-important" title="Important">
-                        <label for="isImportant"
-                            ><span id="starbox" class="material-icons"
-                                >star_outline</span
-                            ></label
-                        >
-                        <input
-                            type="checkbox"
-                            id="isImportant"
-                            name="isImportant"
-                        />
-                    </div>
-                    <div class="form-expand">
-                        <button id="btn-expand-fields" type="button">
-                            <span id="expand-icon" class="material-icons"
-                                >expand_less</span
-                            >
-                        </button>
-                    </div>
-                    <div class="form-submit-btn">
-                        <button type="submit">
-                            <span class="material-icons"> add </span>
-                        </button>
-                    </div>
-                    <div class="form-additional-fields hidden">
-                        <div class="form-description">
-                            <label for="description"></label>
-                            <textarea
-                                id="description"
-                                name="description"
-                                rows="4"
-                                placeholder="description"
-                            ></textarea>
+        <div class="container">
+            <header>
+                <h1>To do</h1>
+            </header>
+            <main>
+                <section>
+                    <form id="add-task-form">
+                        <div class="form-title">
+                            <label for="title"></label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                placeholder="write task here"
+                            />
                         </div>
+                        <div class="form-important" title="Important">
+                            <label for="isImportant"
+                                ><span id="starbox" class="material-icons"
+                                    >star_outline</span
+                                ></label
+                            >
+                            <input
+                                type="checkbox"
+                                id="isImportant"
+                                name="isImportant"
+                            />
+                        </div>
+                        <div class="form-submit-btn">
+                            <button type="submit">
+                                <span class="material-icons"> add </span>
+                            </button>
+                        </div>
+                    </form>
+                </section>
+                <section>
+                    <h2>Tasks</h2>
+                    <button type="button" id="btn-sort-menu">Sort</button>
+                    <button type="button" id="btn-filter-menu">Filter</button>
+                    <button id="btn-show-all" type="button">Show all</button>
+                    <div class="sort-menu hidden">
+                        By title
+                        <button
+                            type="button"
+                            id="btn-sort-title-asc"
+                            class="material-icons"
+                        >
+                            north
+                        </button>
+                        <button
+                            type="button"
+                            id="btn-sort-title-desc"
+                            class="material-icons"
+                        >
+                            south
+                        </button>
+                        By date
+                        <button
+                            id="btn-sort-date-asc"
+                            type="button"
+                            class="material-icons"
+                        >
+                            north
+                        </button>
+                        <button
+                            id="btn-sort-date-desc"
+                            type="button"
+                            class="material-icons"
+                        >
+                            south
+                        </button>
                     </div>
-                </form>
-            </section>
-            <section>
-                <h2>Tasks</h2>
-                <button id="btn-sort-title" type="button">Sort by title</button>
-                <button id="btn-sort-date" type="button">
-                    Sort by date added
-                </button>
-                <button id="btn-show-completed" type="button">
-                    Show completed
-                </button>
-                <button id="btn-show-important" type="button">
-                    Show important
-                </button>
-                <button id="btn-show-all" type="button">Show all</button>
-                <ul id="task-list"></ul>
-            </section>
-        </main>
+                    <div class="filter-menu hidden">
+                        <button id="btn-show-completed" type="button">
+                            Completed
+                        </button>
+                        <button id="btn-show-important" type="button">
+                            Important
+                        </button>
+                    </div>
+                    <ul id="task-list"></ul>
+                </section>
+            </main>
+        </div>
         <script src="main.js"></script>
     </body>
 </html>
