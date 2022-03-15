@@ -309,17 +309,7 @@ const clearFilters = () => {
 
 btnShowAll.addEventListener("click", clearFilters);
 
-//TODO
-// how to show description in tasklist?
-// how to show date in tasklist?
-// clear completed?
-//
-// css
-// how to show filter and sort buttons
-
-// show importance toggle?
-
-// show / hide sort and filter menu
+// show/hide sort and filter menus
 
 const sortMenu = document.querySelector(".sort-menu");
 const sortBtn = document.querySelector("#btn-sort-menu");
