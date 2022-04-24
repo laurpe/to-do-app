@@ -1,34 +1,3 @@
-const listdata = [
-    {
-        id: 3719,
-        title: "Feed goldfish",
-        isImportant: false,
-        dateAdded: "01/03/2022, 13:01:00",
-        isCompleted: false,
-    },
-    {
-        id: 1150,
-        title: "Shop for groceries",
-        isImportant: false,
-        dateAdded: "27/02/2022, 08:20:11",
-        isCompleted: true,
-    },
-    {
-        id: 7858,
-        title: "Return library books",
-        isImportant: true,
-        dateAdded: "02/03/2022, 14:04:45",
-        isCompleted: false,
-    },
-    {
-        id: 3950,
-        title: "Go for a run",
-        isImportant: true,
-        dateAdded: "05/03/2022, 18:30:38",
-        isCompleted: false,
-    },
-];
-
 class Task {
     constructor(title, isImportant, dateAdded) {
         this.id = Math.floor(Math.random() * 10000);
@@ -142,11 +111,6 @@ const setTasks = (tasks) => {
 
 const initializeTasklist = () => {
     let tasks = getTasks();
-
-    if (!tasks || tasks.length === 0) {
-        setTasks(listdata);
-    }
-    tasks = getTasks();
     createList(tasks);
 };
 
