@@ -14,4 +14,4 @@ Simple to do app where you can:
 
 ### Setup and usage
 
-Live page to come
+Live page: https://radiant-baklava-5f48e6.netlify.app/
