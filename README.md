@@ -14,4 +14,4 @@ Simple to do app where you can:
 
 ### Setup and usage
 
-Live page: https://radiant-baklava-5f48e6.netlify.app/
+Live page: https://laurpe-to-do-app.netlify.app/
