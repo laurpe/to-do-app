@@ -111,6 +111,11 @@ const setTasks = (tasks) => {
 
 const initializeTasklist = () => {
     let tasks = getTasks();
+
+    if (!tasks || tasks.length === 0) {
+        setTasks([]);
+    }
+    tasks = getTasks();
     createList(tasks);
 };
 
